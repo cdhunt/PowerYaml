@@ -5,7 +5,7 @@ function Shadow-Copy($file, $shadowPath = "$($env:TEMP)\poweryaml\shadow") {
     }
 
     try {
-        Copy-Item $file $shadowPath -Force -ErrorAction SilentlyContinue
+        Copy-Item -Path $file -Destination $shadowPath -Force -ErrorAction SilentlyContinue
     } catch {
         "Attempted to write over locked file, continuing..." | Write-Debug
     }
