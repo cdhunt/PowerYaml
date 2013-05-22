@@ -1,7 +1,8 @@
 function Load-YamlDotNetLibraries([string] $dllPath, $shadowPath = "$($env:TEMP)\poweryaml\shadow") {
     gci $dllPath | % {
         $shadow = Shadow-Copy -File $_.FullName -ShadowPath $shadowPath
-        [Reflection.Assembly]::LoadFrom($shadow)
+		Add-Type -Path $shadow
+        #[Reflection.Assembly]::LoadFrom($shadow)
     } | Out-Null
 }
 
@@ -21,7 +22,7 @@ function Get-YamlDocument([string] $file) {
 }
 
 function Get-YamlDocumentFromString([string] $yamlString) {
-    $stringReader = new-object System.IO.StringReader($yamlString)
+    $stringReader = New-Object System.IO.StringReader($yamlString)
     $yamlStream = New-Object YamlDotNet.RepresentationModel.YamlStream
     $yamlStream.Load([System.IO.TextReader] $stringReader)
 
