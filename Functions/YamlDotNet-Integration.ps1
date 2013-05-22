@@ -1,9 +1,9 @@
 function Load-YamlDotNetLibraries([string] $dllPath, $shadowPath = "$($env:TEMP)\poweryaml\shadow") {
-    gci $dllPath | % {
+    Get-ChildItem $dllPath | % {
         $shadow = Shadow-Copy -File $_.FullName -ShadowPath $shadowPath
-		Add-Type -Path $shadow
-        #[Reflection.Assembly]::LoadFrom($shadow)
-    } | Out-Null
+		#Add-Type -Path $shadow
+        [Reflection.Assembly]::LoadFrom($shadow)
+    } #| Out-Null
 }
 
 function Get-YamlStream([string] $file) {
