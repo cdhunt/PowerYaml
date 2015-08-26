@@ -11,12 +11,13 @@ function Get-YamlStream([string] $file) {
 
     $yamlStream.Load([System.IO.TextReader] $streamReader)
     $streamReader.Close()
-    return $yamlStream
+    $Hash = @{YamlStream=$yamlStream}
+    return $Hash
 }
 
 function Get-YamlDocument([string] $file) {
     $yamlStream = Get-YamlStream $file
-    $document = $yamlStream.Documents[0]
+    $document = $yamlStream.YamlStream.Documents[0]
     return $document
 }
 
@@ -26,7 +27,7 @@ function Get-YamlDocumentFromString([string] $yamlString) {
     $yamlStream.Load([System.IO.TextReader] $stringReader)
 
     $document = $yamlStream.Documents[0]
-    return $document
+    return $documen
 }
 
 function Explode-Node($node) {
