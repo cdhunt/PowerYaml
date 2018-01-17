@@ -128,6 +128,6 @@ function Export-Yaml {
 		}
 	}
 }
-Add-Type -Path "C:\Users\chunt\Documents\GitHub\YamlDotNet\YamlDotNet.Configuration\bin\Debug\YamlDotNet.RepresentationModel.dll"
+Add-Type -Path "$PSScriptRoot\Libs\YamlDotNet.RepresentationModel.dll"
 #Load-YamlDotNetLibraries (Join-Path $PSScriptRoot -ChildPath "Libs")
 Export-ModuleMember -Function Get-Yaml, Import-Yaml, Export-Yaml
